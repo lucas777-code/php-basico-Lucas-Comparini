@@ -13,8 +13,34 @@ if ($conn->connect_error) {
 }
 
 
-// Digitar PHP + SQL (1º Aqui)
+// Consulta os dados da tabela cliente
+$sql = "SELECT id, nome, email FROM clientes";
+$result = $conn->query($sql);
 
+// Verifica se existem registros e os exibe em formato de tabela
+if ($result->num_rows > 0){
+    echo "<h2>Lista de clientes cadastrados</h2>";
+
+    // define formato da tabela
+    echo "<table border='2'>";
+
+        // Define cabeçalho da tabela
+        echo "<tr><th>ID</th><th>Nome</th><th>Email</th></tr>";
+
+        // enquanto tiver dados preechidos no BD
+        // listar e exibir em formato de tabela
+        while ($row = $result-> fetch_assoc()){
+            echo "<tr>";
+            echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['nome'] . "</td>";
+            echo "<td>" . $row['email'] . "</td>";
+            echo "</tr>";
+        }
+
+    echo "</table>";
+}else{
+    echo "Nenhum cliente encontrado.";
+}
 
 // Fecha a conexão
 $conn->close();

@@ -12,11 +12,25 @@
 -->
 
 <?php
-
-// Digitar PHP
-
+// ALTERAR de acordo com o número da porta
+// Verificar conexão com XAMPP
+$servername = "localhost:3306";
+$username = "root";
+$password = "";
+$dbname = "exercicio";
+try{
+    //tenta criar uma conexão com o banco de dados
+    //confere se as informaçoes estao corretas
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    //verifica se tem algum erro de conexão
+    if ($conn->connect_error){
+        throw new Exception("Falha na conexão:" . $conn->connect_error);
+    }
+    echo "Conexão realizada com sucesso!";
+}catch (Exception $e){
+    //Exibe uma mensagem de erri amigavel 
+    echo "Erro ao conectar o banco de dados:" . $e->getMessage();
+}
 ?>
-
-
 
 

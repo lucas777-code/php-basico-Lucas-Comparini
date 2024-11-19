@@ -38,8 +38,22 @@
         }
 
 
-        // Digitar PHP + SQL (1º Aqui)
+        // Insere o registro no banco de dados
+        //Insere na tabela clientes os seguintes valores 
+        $sql = "INSERT INTO clientes (nome, email) VALUES ('$nome', '$email')";
 
+        // Confere se a variável 'sql' esta correta 
+        if($conn->query($sql) === TRUE){
+
+            // exibe a mensagem 
+            echo "<p style= 'color: green;'>Cliente cadastrado com sucesso!</p>";
+        } else{
+            // exibe a mensagem 
+            echo "<p style='color: red;'> Erro ao cadastrar:" . $conn->error ."</p>";
+        }
+
+        // encerra a conexão
+        $conn->close();
 
     }
     ?>
